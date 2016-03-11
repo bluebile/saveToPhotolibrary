@@ -4,7 +4,7 @@
 - (void)saveToUserLibrary:(CDVInvokedUrlCommand *)command
 {
     CDVPluginResult* result = nil;
-    NSString* argPath = [command.arguments objectAtIndex:0];
+    NSString* argPath = [[command.arguments objectAtIndex:0] objectAtIndex:0];
     UIImage *img = nil;
     
     if ([argPath hasPrefix:@"http"]) {
@@ -14,8 +14,8 @@
     }
     else
     {
-        NSString* path = [ [ [ NSBundle mainBundle ] bundlePath ] stringByAppendingString:argPath ];
-        img = [[UIImage alloc] initWithContentsOfFile:argPath];
+        NSString* path = [argPath stringByReplacingOccurrencesOfString:@"file:" withString:@""];
+        img = [[UIImage alloc] initWithContentsOfFile:path];
     }
 
     if (img != nil) {
