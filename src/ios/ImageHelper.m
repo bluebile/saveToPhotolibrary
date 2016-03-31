@@ -4,7 +4,7 @@
 - (void)saveToUserLibrary:(CDVInvokedUrlCommand *)command
 {
     CDVPluginResult* result = nil;
-    NSString* argPath = [[command.arguments objectAtIndex:0] objectAtIndex:0];
+    NSString* argPath = [command.arguments objectAtIndex:0];
     UIImage *img = nil;
     
     if ([argPath hasPrefix:@"http"]) {
